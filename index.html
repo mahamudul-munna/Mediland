@@ -1,1 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MediLand - Online Pharmacy & Medicine Store in Bangladesh</title>
+  <meta name="description" content="Buy medicines online in Bangladesh. Fast home delivery, prescription, OTC, baby care, supplements and more from MediLand."/>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
+  <style>
+    :root {
+      --primary: #00695c;        /* Deep teal - pharmacy/health feel */
+      --primary-dark: #004d40;
+      --accent: #ff6f00;         /* Orange for buttons/price */
+      --light: #f8f9fa;
+      --gray: #6c757d;
+      --dark: #212529;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark);
+      background-color: var(--light);
+      line-height: 1.6;
+    }
+
+    /* Header & Top Bar */
+    .top-bar {
+      background: var(--dark);
+      color: white;
+      padding: 8px 5%;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .top-bar a {
+      color: var(--accent);
+      text-decoration: none;
+      margin-left: 1.5rem;
+    }
+
+    .top-bar a:hover { text-decoration: underline; }
+
+    /* Navbar */
+    .navbar {
+      background: white;
+      padding: 15px 5%;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .nav-links a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* Search & Hero */
+    .hero {
+      background: linear-gradient(135deg, #e0f7fa 0%, #ffffff 100%);
+      padding: 80px 5% 100px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      margin-bottom: 1rem;
+      color: var(--primary-dark);
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--gray);
+      margin-bottom: 2.5rem;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .search-container {
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 18px 24px;
+      font-size: 1.1rem;
+      border: 2px solid #ddd;
+      border-radius: 50px;
+      outline: none;
+    }
+
+    .search-btn {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .search-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Categories & Products */
+    section {
+      padding: 80px 5%;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+      color: var(--primary-dark);
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--gray);
+      margin-bottom: 3rem;
+      font-size: 1.15rem;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.8rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .category-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: transform 0.25s, box-shadow 0.25s;
+      text-align: center;
+      padding: 30px 15px;
+    }
+
+    .category-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    }
+
+    .category-card h3 {
+      margin: 1rem 0 0.5rem;
+      font-size: 1.25rem;
+      color: var(--primary-dark);
+    }
+
+    /* Product Showcase */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto 60px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+      transition: all 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    }
+
+    .product-img-placeholder {
+      height: 220px;
+      background: #f0f4f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--gray);
+    }
+
+    .product-info {
+      padding: 1.2rem;
+    }
+
+    .product-name {
+      font-size: 1.1rem;
+      margin-bottom: 0.6rem;
+      color: var(--dark);
+    }
+
+    .price {
+      color: var(--accent);
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .add-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .add-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero { padding: 60px 5% 80px; }
+      .hero h1 { font-size: 2.6rem; }
+      section { padding: 60px 5%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div>Fast Home Delivery All Over Bangladesh • Call: 09612-345-678</div>
+    <div>
+      <a href="#">Track Order</a>
+      <a href="#">Login</a>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">MediLand</div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Prescription</a>
+      <a href="#">Categories</a>
+      <a href="#">Offers</a>
+      <a href="#">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero + Search -->
+  <section class="hero">
+    <h1>Your Trusted Online Pharmacy in Bangladesh</h1>
+    <p>100% authentic medicines • Fast delivery • Prescription & OTC • Baby care, Supplements & more</p>
+    
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Search medicines, brands, health conditions...">
+      <button class="search-btn">Search</button>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section>
+    <h2>Shop by Category</h2>
+    <p class="subtitle">Browse our wide range of healthcare products</p>
+
+    <div class="categories-grid">
+      <div class="category-card">
+        <h3>Prescription Medicine</h3>
+      </div>
+      <div class="category-card">
+        <h3>OTC Medicine</h3>
+      </div>
+      <div class="category-card">
+        <h3>Baby & Mom Care</h3>
+      </div>
+      <div class="category-card">
+        <h3>Supplements & Vitamins</h3>
+      </div>
+      <div class="category-card">
+        <h3>Personal Care</h3>
+      </div>
+      <div class="category-card">
+        <h3>Surgical & Diabetic</h3>
+      </div>
+      <div class="category-card">
+        <h3>Herbal & Ayurvedic</h3>
+      </div>
+      <div class="category-card">
+        <h3>Dental Care</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section style="background:#fff;">
+    <h2>Featured Products</h2>
+    <p class="subtitle">Popular & best-selling medicines this week</p>
+
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img-placeholder">Product Image</div>
+        <div class="product-info">
+          <div class="product-name">Napa Extra 500mg Tablet</div>
+          <div class="price">৳ 4.50</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img-placeholder">Product Image</div>
+        <div class="product-info">
+          <div class="product-name">Sergel 20mg Capsule</div>
+          <div class="price">৳ 8.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img-placeholder">Product Image</div>
+        <div class="product-info">
+          <div class="product-name">Ace 100mg Tablet</div>
+          <div class="price">৳ 3.00</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
